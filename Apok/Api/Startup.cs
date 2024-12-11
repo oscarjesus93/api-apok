@@ -1,4 +1,5 @@
 ﻿using Api.Config;
+using Api.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
@@ -18,16 +19,16 @@ namespace Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpContextAccessor();
-            services.AddMemoryCache();
-            services.AddControllers();
-
+            services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
-
+            services.AddMemoryCache();
+            services.AddControllers();
             services.AddEndpointsApiExplorer();
+
+            services.AddScoped<IServiceBrandCar, ServiceBrandCar>();           
 
             services.AddSwaggerGen(swagger =>
             {

@@ -1,4 +1,4 @@
-﻿using Api.Models;
+﻿using Api.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Config
@@ -7,27 +7,30 @@ namespace Api.Config
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }     
         
-        public DbSet<BrandsCars> BrandsCars { get; set; }
+        public DbSet<BrandsCarsEntity> BrandsCars { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<BrandsCars>(entity =>
+            modelBuilder.Entity<BrandsCarsEntity>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id)
                     .ValueGeneratedOnAdd()
                     .UseIdentityColumn();
+
+                entity.Property(e => e.Date_register)
+                        .HasDefaultValueSql("NOW()");                
             });
 
-            modelBuilder.Entity<BrandsCars>().HasData(
-                    new BrandsCars { Id = 1, Description = "Ford" },
-                    new BrandsCars { Id = 2, Description = "Toyota" },
-                    new BrandsCars { Id = 3, Description = "Hiunday" },
-                    new BrandsCars { Id = 4, Description = "Mazda" },
-                    new BrandsCars { Id = 5, Description = "Kia" },
-                    new BrandsCars { Id = 6, Description = "Chevrolet"  }
+            modelBuilder.Entity<BrandsCarsEntity>().HasData(
+                    new BrandsCarsEntity { Id = 1, Description = "Ford" },
+                    new BrandsCarsEntity { Id = 2, Description = "Toyota" },
+                    new BrandsCarsEntity { Id = 3, Description = "Hiunday" },
+                    new BrandsCarsEntity { Id = 4, Description = "Mazda" },
+                    new BrandsCarsEntity { Id = 5, Description = "Kia" },
+                    new BrandsCarsEntity { Id = 6, Description = "Chevrolet"  }
                 );
         }
     }
