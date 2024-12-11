@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241211001600_FivenMigrations")]
-    partial class FivenMigrations
+    [Migration("20241211035149_ThreeMigrations")]
+    partial class ThreeMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Api.Entity.BandsCarsEntity", b =>
+            modelBuilder.Entity("Api.Entity.BrandsCarsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,60 +38,48 @@ namespace Api.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("NOW()");
 
-                    b.Property<int>("Date_registerl")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValueSql("CAST(TO_CHAR(NOW(), 'YYYYMMDD') AS INTEGER)");
-
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("BandsCars");
+                    b.ToTable("BrandsCars");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             Date_register = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date_registerl = 0,
                             Description = "Ford"
                         },
                         new
                         {
                             Id = 2,
                             Date_register = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date_registerl = 0,
                             Description = "Toyota"
                         },
                         new
                         {
                             Id = 3,
                             Date_register = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date_registerl = 0,
                             Description = "Hiunday"
                         },
                         new
                         {
                             Id = 4,
                             Date_register = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date_registerl = 0,
                             Description = "Mazda"
                         },
                         new
                         {
                             Id = 5,
                             Date_register = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date_registerl = 0,
                             Description = "Kia"
                         },
                         new
                         {
                             Id = 6,
                             Date_register = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date_registerl = 0,
                             Description = "Chevrolet"
                         });
                 });

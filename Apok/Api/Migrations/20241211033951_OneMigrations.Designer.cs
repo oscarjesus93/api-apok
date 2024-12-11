@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241211002158_SixMigrations")]
-    partial class SixMigrations
+    [Migration("20241211033951_OneMigrations")]
+    partial class OneMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Api.Entity.BandsCarsEntity", b =>
+            modelBuilder.Entity("Api.Entity.BrandsCarsEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,12 +39,11 @@ namespace Api.Migrations
                         .HasDefaultValueSql("NOW()");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("BandsCars");
+                    b.ToTable("BrandsCars");
 
                     b.HasData(
                         new
