@@ -22,8 +22,7 @@ namespace Api
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                string connection = Configuration["defaultConnection"];
-                options.UseNpgsql(connection);
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddMemoryCache();
             services.AddControllers();

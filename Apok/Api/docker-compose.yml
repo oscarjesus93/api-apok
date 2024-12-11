@@ -10,8 +10,7 @@ services: # Aquí definimos los servicios que queremos ejecutar
     depends_on:
       - db # Este servicio depende del servicio 'db', lo que significa que se inicia después de él
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development # Establece el entorno de ejecución de tu API
-      - defaultConnection=Host=db;Port=5432;Database=db_apok;Username=root;Password=root
+      - ASPNETCORE_ENVIRONMENT=Development # Establece el entorno de ejecución de tu API      
     entrypoint: /bin/bash -c "dotnet Api.dll"
 
   db: # Servicio de PostgreSQL
